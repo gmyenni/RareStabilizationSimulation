@@ -1,0 +1,6 @@
+    #2-species annual plant model----------------------------------------------
+    updateN = function(r_arg, Nself, N1, a_intra, a1){
+      newN = (r_arg * Nself) /(1 + a_intra * Nself + a1 * N1 )
+      newN=rpois(1,newN)         #demographic stochasticity
+      return(newN)
+                  }

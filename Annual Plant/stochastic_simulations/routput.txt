@@ -1,0 +1,296 @@
+
+R version 2.12.0 (2010-10-15)
+Copyright (C) 2010 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(snow)
+
+Attaching package: 'snow'
+
+The following object(s) are masked from 'package:base':
+
+    enquote
+
+> cores=8
+> 
+> print(date())
+[1] "Tue Oct 26 22:40:34 2010"
+> # parameters -----------------------------------------
+>   # name of output file:
+>   outfile =  "annplant_2spp_stoch_intra.csv"
+> 
+>   #specify combinations of freq-dep parameters
+>   l1_v=20
+>   l2_v=15
+> 
+>   a11_v=c(1,1.2,1.3,1.5,2,2.5,3,4)
+>   a12_v=.3
+>   a21_v=.3
+>   a22_v=1
+> 
+>   simul = expand.grid("l1"=l1_v,"l2"=l2_v,"a11"=a11_v,"a12"=a12_v,"a21"=a21_v,"a22"=a22_v)
+> 
+>   iterations=2000
+>     
+> 
+> #simulation output
+> simul$meanN1 = NA
+> simul$medN1 = NA
+> simul$meanN2 = NA
+> simul$medN2 = NA
+> simul$sdN1 = NA
+> simul$sdN2 = NA
+> simul$MTC = NA
+> simul$medTC = NA
+> simul$MTP1 = NA
+> simul$medTP1 = NA     
+> simul$MTP2 = NA
+> simul$medTP2 = NA
+> simul$Ext1 = NA
+> simul$Ext2 = NA
+> 
+> cluster1 <- makeCluster(cores, type = "SOCK")
+
+Attaching package: 'snow'
+
+The following object(s) are masked from 'package:base':
+
+    enquote
+
+
+Attaching package: 'snow'
+
+The following object(s) are masked from 'package:base':
+
+    enquote
+
+
+Attaching package: 'snow'
+
+The following object(s) are masked from 'package:base':
+
+    enquote
+
+
+Attaching package: 'snow'
+
+The following object(s) are masked from 'package:base':
+
+    enquote
+
+
+Attaching package: 'snow'
+
+The following object(s) are masked from 'package:base':
+
+    enquote
+
+
+Attaching package: 'snow'
+
+The following object(s) are masked from 'package:base':
+
+    enquote
+
+
+Attaching package: 'snow'
+
+The following object(s) are masked from 'package:base':
+
+    enquote
+
+
+Attaching package: 'snow'
+
+The following object(s) are masked from 'package:base':
+
+    enquote
+
+> clusterCall(cluster1, function() source("updateN_function.r"))
+[[1]]
+[[1]]$value
+function (r_arg, Nself, N1, a_intra, a1) 
+{
+    newN = (r_arg * Nself)/(1 + a_intra * Nself + a1 * N1)
+    newN = rpois(1, newN)
+    return(newN)
+}
+
+[[1]]$visible
+[1] FALSE
+
+
+[[2]]
+[[2]]$value
+function (r_arg, Nself, N1, a_intra, a1) 
+{
+    newN = (r_arg * Nself)/(1 + a_intra * Nself + a1 * N1)
+    newN = rpois(1, newN)
+    return(newN)
+}
+
+[[2]]$visible
+[1] FALSE
+
+
+[[3]]
+[[3]]$value
+function (r_arg, Nself, N1, a_intra, a1) 
+{
+    newN = (r_arg * Nself)/(1 + a_intra * Nself + a1 * N1)
+    newN = rpois(1, newN)
+    return(newN)
+}
+
+[[3]]$visible
+[1] FALSE
+
+
+[[4]]
+[[4]]$value
+function (r_arg, Nself, N1, a_intra, a1) 
+{
+    newN = (r_arg * Nself)/(1 + a_intra * Nself + a1 * N1)
+    newN = rpois(1, newN)
+    return(newN)
+}
+
+[[4]]$visible
+[1] FALSE
+
+
+[[5]]
+[[5]]$value
+function (r_arg, Nself, N1, a_intra, a1) 
+{
+    newN = (r_arg * Nself)/(1 + a_intra * Nself + a1 * N1)
+    newN = rpois(1, newN)
+    return(newN)
+}
+
+[[5]]$visible
+[1] FALSE
+
+
+[[6]]
+[[6]]$value
+function (r_arg, Nself, N1, a_intra, a1) 
+{
+    newN = (r_arg * Nself)/(1 + a_intra * Nself + a1 * N1)
+    newN = rpois(1, newN)
+    return(newN)
+}
+
+[[6]]$visible
+[1] FALSE
+
+
+[[7]]
+[[7]]$value
+function (r_arg, Nself, N1, a_intra, a1) 
+{
+    newN = (r_arg * Nself)/(1 + a_intra * Nself + a1 * N1)
+    newN = rpois(1, newN)
+    return(newN)
+}
+
+[[7]]$visible
+[1] FALSE
+
+
+[[8]]
+[[8]]$value
+function (r_arg, Nself, N1, a_intra, a1) 
+{
+    newN = (r_arg * Nself)/(1 + a_intra * Nself + a1 * N1)
+    newN = rpois(1, newN)
+    return(newN)
+}
+
+[[8]]$visible
+[1] FALSE
+
+
+> 
+> #simulation function-------------------------------------
+> Sim <- function(k, simul, iterations) {
++ 
++     l1=simul$l1[k]           #get parameter combo
++     l2=simul$l2[k]
++     a11=simul$a11[k]
++     a12=simul$a12[k]
++     a21=simul$a21[k]
++     a22=simul$a22[k]
++ 
++     #set up iterations
++     maxtime=50000
++     initialNsp1 = 5
++     initialNsp2 = 5
++     
++     persistence = matrix(NA,nrow=iterations, ncol=2)   #to save persistence data
++     mt = matrix(NA,nrow=iterations, ncol=2)            #to save population data
++ 
++ #iterations loop------------------------------------
++ for(j in 1:iterations) {
++ 
++   N=data.frame("spp1"=initialNsp1,"spp2"=initialNsp2)  #initialize
++ 
++ # populations loop ---------------------------------
++     counter=1
++     stopRun=F
++     while(stopRun==F){
++       counter=counter+1
++     	N[counter,1] = updateN(l1,N[counter-1,1],N[counter-1,2],a11,a12) 
++     	N[counter,2] = updateN(l2,N[counter-1,2],N[counter-1,1],a22,a21)
++       if(sum(N[counter,]==0)>=1) stopRun=T
++       if(counter>maxtime) stopRun=T
++       } #next timestep (counter)
++ 
++   tmp = rep(dim(N)[1],2)
++     tmp[which(N[dim(N)[1],]>0)]=NA
++     persistence[j,] = tmp     #save persistence data
++   mt[j,] = colMeans(N)        #save mean population sizes
++ } #next iteration (j)
++ 
++ #iterations stats
++ coexist=apply(persistence,MARGIN=1,FUN=min,na.rm=T)
++ simul$meanN1[k] = mean(mt[,1])                  #mean/median population sizes
++ simul$medN1[k] = median(mt[,1])
++ simul$meanN2[k] = mean(mt[,2])
++ simul$medN2[k] = median(mt[,2])
++ simul$sdN1[k] = sd(mt[,1])                      #population standard deviations
++ simul$sdN2[k] = sd(mt[,2])
++ simul$MTC[k] = mean(coexist,na.rm=T)             #mean/median time populations coexist
++ simul$medTC[k] = median(coexist,na.rm=T)
++ simul$MTP1[k] = mean(persistence[,1],na.rm=T)        #mean/median times populations persist
++ simul$medTP1[k] = median(persistence[,1],na.rm=T)
++ simul$MTP2[k] = mean(persistence[,2],na.rm=T)
++ simul$medTP2[k] = median(persistence[,2],na.rm=T)
++ simul$Ext1[k] = sum(is.na(persistence[,1])==F)/iterations    #fraction of times species goes extinct
++ simul$Ext2[k] = sum(is.na(persistence[,2])==F)/iterations
++ 
++ #progress update
++   tmp = paste("Parameter combination",k,"of",dim(simul)[1],sep=" ")
++   print(tmp)
++   print(date())
++   flush.console()
++   simul[k,]
++ } #end Sim function
+> 
+> k=seq(1:dim(simul)[1])
+> simul1=parSapply(cluster1, k, Sim, simul=simul, iterations=iterations)
